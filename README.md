@@ -1,13 +1,13 @@
-This is a freelance application:
+##This is a freelance application:
 
 There are three parts to start the application. Database, server and client.
 
 
-STARTING THE DATABASE:
+#STARTING THE DATABASE:
 
 MYSQL Database is used. Three tables are created Project, Users and Bids.
 
-Run the following query to create Users table:
+#Run the following query to create Users table:
 
 CREATE TABLE `Users` (
   `username` varchar(16) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE `Users` (
   PRIMARY KEY (`username`)
 )
 
-Run the following query to create Project table:
+#Run the following query to create Project table:
 
 CREATE TABLE `Project` (
   `project_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -38,7 +38,7 @@ CREATE TABLE `Project` (
   CONSTRAINT `username` FOREIGN KEY (`username`) REFERENCES `Users` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 
-Run the following command to create Bids table:
+#Run the following command to create Bids table:
 
 CREATE TABLE `Bids` (
   `period` int(11) DEFAULT NULL,
@@ -54,12 +54,12 @@ CREATE TABLE `Bids` (
 
 start the database.
 
-Starting the server:
+#Starting the server:
 
 1) move to server/ folder
 2) Run command --- npm install & npm start ( server starts on 3000 )
 
-Starting the client:
+#Starting the client:
 
 1) remain in freelancer-application/ folder
 2) Run command --- npm install & PORT=3001 npm start (client start on 3001)
