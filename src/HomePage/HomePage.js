@@ -9,12 +9,22 @@ const thStyle ={
     backgroundColor: '#428bca',
     color: 'white'
 }
+const sStyle ={
+    width: '400px'
+}
+function searchingFor(search){
+    return function(x){
+        return x.skills.toLowerCase().includes(search.toLowerCase()) || !search;
+    };
+}
+
 class HomePage extends React.Component{
 
 	constructor(){
 		super();
 		this.state = {
-			active : null
+			active : null,
+            search : ''
 		}
 
 		this.handleClick = this.handleClick.bind(this);
@@ -59,14 +69,17 @@ class HomePage extends React.Component{
         this.props.logout();
     }
 
+    updateSearch(event){
+	    this.setState({search: event.target.value.substr(0,20)});
+    }
+
 	render(){
 		const { authentication, user } = this.props;
 		console.log("authentication", authentication);
-		console.log("projects", user.projects)
-
+		console.log("projects", user.projects);
 		let projectEle = null;
 		if(user.projects){
-			let tableBody = user.projects.projects.map( project => <tr>
+			let tableBody = user.projects.projects.filter(searchingFor(this.state.search)).map( project => <tr>
 									<td><label for="project-title"><a href={ "/project/" + project.project_id}>{project.title}</a></label><br/>
 									<p>{project.description}</p>
 									</td>
@@ -143,6 +156,9 @@ class HomePage extends React.Component{
                   &nbsp;
                   &nbsp;
                   <button class="btn btn-primary navbar-btn" name="homepage" onClick={this.handleClick}>Home</button>
+                  &nbsp;
+                  &nbsp;
+                  <input class="form-control " type="text" style={sStyle} value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search For Projects By Skill" autoFocus/>
 			  </div>
 			</nav>
 			<div>{projectEle}</div></div>
