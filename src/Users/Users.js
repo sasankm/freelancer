@@ -89,7 +89,7 @@ class Users extends React.Component{
 			        </ul>
 			      </li>
 			    </ul>
-			    <button class="btn btn-primary navbar-btn navbar-right" name="post-project" onClick={this.handleClick}>post-project</button>
+			    <button class="btn btn-warning navbar-btn navbar-right" name="post-project" onClick={this.handleClick}>post-project</button>
 			    <button class="btn btn-primary navbar-btn" name="dashboard" onClick={this.handleClick}>dashboard</button>
 			  </div>
 			</nav>

@@ -1,10 +1,12 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 import { history } from '../_helpers/history';
 
-
+const imgStyle = {
+    width: '150px',
+    height : '50px'
+};
 const thStyle ={
     backgroundColor: '#428bca',
     color: 'white'
@@ -15,8 +17,8 @@ class ProjectInfo extends React.Component{
 		super();
 		this.state = {
 			bid: "",
-			period: ""
-		}
+			period: "",
+		};
 
 		this.handleClick = this.handleClick.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -25,7 +27,6 @@ class ProjectInfo extends React.Component{
 
 	handleSubmit(e){
 		e.preventDefault();
-
 		const { bid, period } = this.state;
 		const { dispatch, user } = this.props;
 		console.log("check submit: ", bid, period, user.project.project_id);
@@ -62,6 +63,9 @@ class ProjectInfo extends React.Component{
 		else if(name == 'homepage'){
 		    history.push('/homepage')
         }
+        else if(name == 'hire'){
+			this.props.getProjectsHired();
+		}
 
 	}
 	logout(event){
@@ -69,11 +73,17 @@ class ProjectInfo extends React.Component{
 		this.props.logout();
 	}
 
+	/*hireFreelancer(event){
+		event.preventDefault();
+		this.props.getProjectsHired();
+	}*/
+
 	render(){
 		const { authentication, user } = this.props;
 		console.log("authentication", authentication);
 		console.log("project", user.project);
 		console.log("bids", user.bids)
+		//const {name} = this.props;
 
 		let bodyEle = null;
 		if(user.project && user.bids){
@@ -81,20 +91,23 @@ class ProjectInfo extends React.Component{
 									<td><a href={"/users/" + bid.userName}>{bid.userName}</a></td>
 									<td>{bid.bid}</td>
 									<td>{bid.period}</td>
-									</tr>)
+				<td><button class="btn btn-primary navbar-btn" name="hire" onClick={this.handleClick}>Hire</button></td>
+									</tr>);
 
-			bodyEle = <div class="container"><div class="col-sm-6">
+			bodyEle = <div class="container">
+				      <div class="col-sm-6">
 						<h2>{user.project.title}</h2>
 						<div class="well well-lg">
-							<h3>Project Description</h3>
+							<h4><u>Project Description:</u></h4>
 							<p>{user.project.description}</p>
-							<h4>Skills Required</h4>
+							<h4><u>Skills Required:</u></h4>
 							<p>{user.project.skills}</p>
-							<h4>Budget Range</h4>
+							<h4><u>Budget Range:</u></h4>
 							<p>{user.project.budget}</p>
-							<h4>Average bid</h4>
-							<p>NULL</p>
-						</div></div><br/>
+							<h4><u>Average bid:</u></h4>
+							<p>{user.bids.avg}</p>
+						</div>
+					  </div><br/>
 						<h3>Bid Now</h3>
 						<div class="well well-lg col-sm-4">
 							<form onSubmit={this.handleSubmit}>
@@ -116,7 +129,8 @@ class ProjectInfo extends React.Component{
 							      <tr>
 							        <th style={thStyle}>Freelancer</th>
 							        <th style={thStyle}>Bid</th>
-							        <th style={thStyle}>Period</th>
+							        <th style={thStyle}>Time Required (Days)</th>
+									  <th style={thStyle}>Hire</th>
 							      </tr>
 							    </thead>
 							    <tbody>
@@ -132,7 +146,7 @@ class ProjectInfo extends React.Component{
 			<nav class="navbar navbar-default">
 			  <div class="container">
 			    <div class="navbar-header">
-			      <a  href="/"><img class="navbar-brand" src="https://cdn6.f-cdn.com\/build\/icons\/fl-logo.svg"/></a>
+			      <a  href="/"><img style={imgStyle} class="navbar-brand" src="https://cdn6.f-cdn.com\/build\/icons\/fl-logo.svg"/></a>
 			    </div>
 			    <button class="btn btn-primary navbar-btn navbar-right" name="logout" onClick={this.logout.bind(this)}>Log out</button>
 			    <ul class="nav navbar-nav navbar-right">
@@ -145,7 +159,7 @@ class ProjectInfo extends React.Component{
 			        </ul>
 			      </li>
 			    </ul>
-			    <button class="btn btn-primary navbar-btn navbar-right" name="post-project" onClick={this.handleClick}>post-project</button>
+			    <button class="btn btn-warning navbar-btn navbar-right" name="post-project" onClick={this.handleClick}>post-project</button>
 			    <button class="btn btn-primary navbar-btn" name="dashboard" onClick={this.handleClick}>Dashboard</button>
                   &nbsp;
                   &nbsp;
@@ -170,6 +184,7 @@ function mapDispatchToProps(dispatch){
 		bid : (bid,period,project_id) => dispatch(userActions.bid(bid,period,project_id)),
 		getProjectInfo : (project_id) => dispatch(userActions.getProjectInfo(project_id)),
 		getBids : (project_id) => dispatch(userActions.getBids(project_id)),
+		getProjectsHired : (project_id) => dispatch(userActions.getProjectsHired(project_id)),
 		logout : () => dispatch(userActions.logout())
 	};
 }

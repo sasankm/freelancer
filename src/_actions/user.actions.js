@@ -14,7 +14,8 @@ export const userActions = {
     bid,
     getBids,
     getBidsUser,
-    getProjectsPublished
+    getProjectsPublished,
+	getProjectsHired
 };
 
 function signup(username,password, email){
@@ -233,4 +234,18 @@ function getProjectsPublished(){
 		})
 	}
 }
-
+function getProjectsHired(project_id){
+	console.log("Request to getProjectsHired");
+	return dispatch => {
+		axios('http://localhost:3000/project/projectshired',{
+			method:'get',
+			withCredentials: true
+		}).then(function(res){
+			console.log("res get-projects-hired",res);
+			dispatch({type: "GET_PROJECTSHIRED_SUCCESS", res})
+			history.push('/projects-hired')
+		}).catch(function(err){
+			console.log("error in get-projects-hired");
+		})
+	}
+}

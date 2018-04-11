@@ -8,10 +8,14 @@ import { history } from '../_helpers/history';
 const thStyle ={
     backgroundColor: '#428bca',
     color: 'white'
-}
+};
 const sStyle ={
     width: '400px'
-}
+};
+const imgStyle = {
+    width: '150px',
+    height : '50px'
+};
 function searchingFor(search){
     return function(x){
         return x.skills.toLowerCase().includes(search.toLowerCase()) || !search;
@@ -25,7 +29,7 @@ class HomePage extends React.Component{
 		this.state = {
 			active : null,
             search : ''
-		}
+		};
 
 		this.handleClick = this.handleClick.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,15 +55,15 @@ class HomePage extends React.Component{
 
 	handleClick(e){
 		const { name } = e.target;
-        const { dispatch } = this.props;
+        //const { dispatch } = this.props;
 		console.log(name);
-		if(name === "post-project"){
+		if(name == "post-project"){
 			history.push('/post-project')
 		}
-		else if(name === "dashboard"){
+		else if(name == "dashboard"){
 			history.push('/dashboard')
 		}
-		else if(name === 'homepage'){
+		else if(name == 'homepage'){
 		    history.push('/homepage')
         }
 
@@ -78,6 +82,7 @@ class HomePage extends React.Component{
 		console.log("authentication", authentication);
 		console.log("projects", user.projects);
 		let projectEle = null;
+        let projectEle1 = null;
 		if(user.projects){
 			let tableBody = user.projects.projects.filter(searchingFor(this.state.search)).map( project => <tr>
 									<td><label for="project-title"><a href={ "/project/" + project.project_id}>{project.title}</a></label><br/>
@@ -91,6 +96,7 @@ class HomePage extends React.Component{
 
 
 			projectEle = <div class="container"><div class="col-sm-1"></div><div class="col-sm-10">
+				<label>All Open Projects : </label><br/><br/>
 							<table class="table">
 							    <thead>
 							      <tr>
@@ -107,6 +113,35 @@ class HomePage extends React.Component{
 							  </table>
 						</div>
 						<div class="col-sm-1"></div></div>
+            let tableBody1 = user.projects.projects.filter(searchingFor(this.state.search)).map( project => <tr>
+                <td><label for="project-title"><a href={ "/project/" + project.project_id}>{project.title}</a></label><br/>
+                    <p>{project.description}</p>
+                </td>
+                <td><a href={"/users/" + project.username}>{project.username}</a></td>
+                <td>{project.skills}</td>
+                <td>NULL</td>
+                <td>{project.budget}</td>
+            </tr>);
+
+
+            projectEle1 = <div class="container"><div class="col-sm-1"></div><div class="col-sm-10">
+                <label>Relevant Projects based on Your Profile: </label><br/><br/>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th style={thStyle}>Project</th>
+                        <th style={thStyle}>Employer</th>
+                        <th style={thStyle}>Skills Required</th>
+                        <th style={thStyle}>Number of Bid yet</th>
+                        <th style={thStyle}>Budget Range</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {tableBody1}
+                    </tbody>
+                </table>
+            </div>
+                <div class="col-sm-1"></div></div>
 		}
 
 		return (<div>
@@ -138,7 +173,7 @@ class HomePage extends React.Component{
 			<nav class="navbar navbar-default">
 			  <div class="container">
 			    <div class="navbar-header">
-			      <a  href="/"><img class="navbar-brand" src="https://cdn6.f-cdn.com\/build\/icons\/fl-logo.svg"/></a>
+			      <a  href="/"><img class="navbar-brand"style={imgStyle} src="https://cdn6.f-cdn.com\/build\/icons\/fl-logo.svg"/></a>
 			    </div>
 			    <button class="btn btn-primary navbar-btn navbar-right" name="logout" onClick={this.logout.bind(this)}>Log out</button>
 			    <ul class="nav navbar-nav navbar-right">
@@ -148,6 +183,8 @@ class HomePage extends React.Component{
 			        <ul class="dropdown-menu">
 			          <li><a href="/update-profile">Update My Profile</a></li>
 			          <li><a href={"/users/" + authentication.username}>View My Profile</a></li>
+                        <li><a href="/update-profile">Projects Assigned To Me</a></li>
+                        <li><a href="/projects-hired">Projects Hired By Me</a></li>
 			        </ul>
 			      </li>
 			    </ul>
@@ -161,7 +198,13 @@ class HomePage extends React.Component{
                   <input class="form-control " type="text" style={sStyle} value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search For Projects By Skill" autoFocus/>
 			  </div>
 			</nav>
-			<div>{projectEle}</div></div>
+			<div>
+				{projectEle}
+				</div>
+                <div>
+                    {projectEle1}
+                </div>
+			</div>
 		);
 	}
 }

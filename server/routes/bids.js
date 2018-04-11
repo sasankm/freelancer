@@ -42,7 +42,7 @@ router.post('/bid', auth, function(req, res, next) {
 });
 
 router.get('/bid', auth, function(req, res, next){
-	console.log("Received req to get bids for porjects: ");
+	console.log("Received req to get bids for projects: ");
 	let basedOn = req.query.username ? "userName" : "projectId" ;
 	let value = req.query.username ? req.query.username : req.query.project_id;
 

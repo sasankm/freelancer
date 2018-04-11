@@ -39,6 +39,11 @@ export function user(state = initialState, action){
 				...state
 			}
 			break;
+		case "GET_PROJECTSHIRED_SUCCESS":
+			return {
+				...state,
+				project: action.res.data.project
+			}
 		default:
 			return state;
 	}

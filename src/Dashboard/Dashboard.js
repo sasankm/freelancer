@@ -7,13 +7,17 @@ const thStyle ={
     backgroundColor: '#428bca',
     color: 'white'
 }
+const imgStyle = {
+    width: '150px',
+    height : '50px'
+};
 class Dashboard extends React.Component{
 
 	constructor(props){
 		super(props);
 
 		this.state = {
-			projects:[]
+
 		}
 
 		this.handleClick = this.handleClick.bind(this);
@@ -23,8 +27,8 @@ class Dashboard extends React.Component{
 		//const { dispatch } = this.props;
 		//dispatch(userActions.getBidsUser());
 		//dispatch(userActions.getProjectsPublished());
-		this.props.getBidsUser(this.props.bids);
-		this.props.getProjectsPublished(this.props.projects);
+		this.props.getBidsUser();
+		this.props.getProjectsPublished();
 	}
 
 	handleClick(e){
@@ -36,6 +40,9 @@ class Dashboard extends React.Component{
 		}
 		else if(name == "dashboard"){
 			history.push('/dashboard');
+		}
+		else if(name == 'homepage'){
+			history.push('/homepage')
 		}
 	}
 	logout(event){
@@ -59,8 +66,8 @@ class Dashboard extends React.Component{
 												<td>{bid.bid}</td>
 												<td>"OPEN"</td>
 											</tr>);
-
-			let publishedBody = user.projects.project.map( project => <tr>
+			// If an error occurs here remove one projects
+			let publishedBody = user.projects.map( project => <tr>
 												<td><a href={"/project/"+project.project_id}>{project.project}</a></td>
 												<td>{project.bid}</td>
 												<td><a href={"/users/"+project.freelancer}>{project.freelancer}</a></td>
@@ -85,7 +92,7 @@ class Dashboard extends React.Component{
 								{bidBody}
 							    </tbody>
 							  </table><br/><br/>
-							  <label>Projects You Published : </label><br/><br/>
+							  <label>Projects You Published and freelancers who have bid on: </label><br/><br/>
 							<table class="table">
 							    <thead>
 							      <tr>
@@ -108,7 +115,7 @@ class Dashboard extends React.Component{
 			<nav class="navbar navbar-default">
 			  <div class="container">
 			    <div class="navbar-header">
-			      <a  href="/"><img class="navbar-brand" src="https://cdn6.f-cdn.com\/build\/icons\/fl-logo.svg"/></a>
+			      <a  href="/"><img class="navbar-brand" style={imgStyle} src="https://cdn6.f-cdn.com\/build\/icons\/fl-logo.svg"/></a>
 			    </div>
 			    <button class="btn btn-primary navbar-btn navbar-right" name="logout" onClick={this.logout.bind(this)}>Log out</button>
 			    <ul class="nav navbar-nav navbar-right">
@@ -121,8 +128,11 @@ class Dashboard extends React.Component{
 			        </ul>
 			      </li>
 			    </ul>
-			    <button class="btn btn-primary navbar-btn navbar-right" name="post-project" onClick={this.handleClick}>post-project</button>
-			    <button class="btn btn-primary navbar-btn" name="dashboard" onClick={this.handleClick}>dashboard</button>
+			    <button class="btn btn-warning navbar-btn navbar-right" name="post-project" onClick={this.handleClick}>post-project</button>
+			    <button class="btn btn-primary navbar-btn" name="dashboard" onClick={this.handleClick}>Dashboard</button>
+                  &nbsp;
+                  &nbsp;
+                  <button class="btn btn-primary navbar-btn" name="homepage" onClick={this.handleClick}>Home</button>
 			  </div>
 			</nav>
 			<div>{projectEle}</div></div>

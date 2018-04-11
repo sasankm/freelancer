@@ -132,5 +132,23 @@ router.get('/projectspublished', auth, function(req, res, next){
 	});
 
 });
+router.get('/projectshired' , auth , function(req, res, next) {
+    console.log('req to print projects hired');
+
+    getConnection(function (err, conn) {
+        if (err) {
+            return res.send(JSON.stringify({error: "DATABASE_ERROR"}));
+        }
+        let query = "SELECT * FROM Project WHERE project_id = " + mysql.escape(req.project_id);
+        conn.query(query, function(err, resp){
+            conn.release();
+            if(err){
+                console.log(err)
+                return res.send(JSON.stringify({error: "DATABASE"}));
+            }
+            return res.send(JSON.stringify({status: "SUCCESS", project: resp[0]}));
+        });
+    });
+});
 
 module.exports = router;

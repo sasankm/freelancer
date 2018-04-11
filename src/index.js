@@ -11,6 +11,7 @@ import ConnectedUsersPage from './Users/Users';
 import ConnectedProjectInfoPage from './ProjectInfo/ProjectInfo';
 import ConnectedDashboardPage from './Dashboard/Dashboard';
 import ConnectedHome from './Home/home';
+import ConnectedProjectsHiredPage from './ProjectInfo/ProjectsHired';
 
 import { history } from './_helpers/history.js';
 import EnsureLoggedInContainer from './EnsureLoggedInContainer';
@@ -30,6 +31,7 @@ ReactDOM.render(<Provider store={store}><Router history={history}>
 			<Route path="/update-profile" component={ConnectedUpdateProfilePage}/>
 			<Route path="/users/:username" component={ConnectedUsersPage}/>
 			<Route path="/project/:project_id" component={ConnectedProjectInfoPage}/>
+		    <Route path="/projects-hired" component={ConnectedProjectsHiredPage}/>
 			<Route path="/dashboard" component={ConnectedDashboardPage}/>
      </div>
      </Router></Provider>, document.getElementById('root'));
