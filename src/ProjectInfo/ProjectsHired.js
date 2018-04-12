@@ -92,7 +92,7 @@ class ProjectsHired extends React.Component {
                                 </ul>
                             </li>
                         </ul>
-                        <button class="btn btn-primary navbar-btn navbar-right" name="post-project"
+                        <button class="btn btn-warning navbar-btn navbar-right" name="post-project"
                                 onClick={this.handleClick}>post-project
                         </button>
                         <button class="btn btn-primary navbar-btn" name="dashboard"

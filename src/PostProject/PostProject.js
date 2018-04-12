@@ -43,6 +43,9 @@ class PostProject extends React.Component{
 		else if(name == "dashboard"){
 			history.push('/dashboard')
 		}
+		else if(name == 'homepage'){
+			history.push('/homepage')
+		}
 	}
 	logout(event){
 		event.preventDefault();
@@ -76,6 +79,9 @@ class PostProject extends React.Component{
 			    </ul>
 			    <button class="btn btn-warning navbar-btn navbar-right" name="post-project" onClick={this.handleClick}>post-project</button>
 			    <button class="btn btn-primary navbar-btn" name="dashboard" onClick={this.handleClick}>dashboard</button>
+				  &nbsp;
+				  &nbsp;
+                  <button class="btn btn-primary navbar-btn" name="homepage" onClick={this.handleClick}>Home</button>
 			  </div>
 			</nav>
 			<div class="container">

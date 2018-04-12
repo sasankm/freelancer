@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
 import './HomePage.css';
 import { userActions } from '../_actions';
@@ -113,7 +112,7 @@ class HomePage extends React.Component{
 							  </table>
 						</div>
 						<div class="col-sm-1"></div></div>
-            let tableBody1 = user.projects.projects.filter(searchingFor(this.state.search)).map( project => <tr>
+            let tableBody1 = user.projects.projects.map( project => <tr key={user.projects.skills}>
                 <td><label for="project-title"><a href={ "/project/" + project.project_id}>{project.title}</a></label><br/>
                     <p>{project.description}</p>
                 </td>

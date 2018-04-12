@@ -7,20 +7,31 @@ const thStyle ={
     backgroundColor: '#428bca',
     color: 'white'
 }
+const sStyle ={
+    width: '400px'
+};
 const imgStyle = {
     width: '150px',
     height : '50px'
 };
+function searchingFor(search){
+    return function(y){
+        return y.skills.toLowerCase().includes(search.toLowerCase()) || !search;
+    };
+}
+
 class Dashboard extends React.Component{
 
 	constructor(props){
 		super(props);
 
 		this.state = {
+			search:''
 
-		}
+		};
 
 		this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
 	}
 
 	componentDidMount(){
@@ -30,8 +41,17 @@ class Dashboard extends React.Component{
 		this.props.getBidsUser();
 		this.props.getProjectsPublished();
 	}
+    handleChange(e) {
+        const { name, value } = e.target;
+        console.log(name, value);
+        this.setState({ [name]: value });
+    }
+    updateSearch(event){
+        this.setState({search: event.target.value.substr(0,20)});
+    }
 
-	handleClick(e){
+
+    handleClick(e){
 		const { name } = e.target;
         const { dispatch } = this.props;
 		console.log(name);
@@ -67,7 +87,7 @@ class Dashboard extends React.Component{
 												<td>"OPEN"</td>
 											</tr>);
 			// If an error occurs here remove one projects
-			let publishedBody = user.projects.map( project => <tr>
+			let publishedBody = user.projects.filter(searchingFor(this.state.search)).map( project => <tr>
 												<td><a href={"/project/"+project.project_id}>{project.project}</a></td>
 												<td>{project.bid}</td>
 												<td><a href={"/users/"+project.freelancer}>{project.freelancer}</a></td>
@@ -133,6 +153,9 @@ class Dashboard extends React.Component{
                   &nbsp;
                   &nbsp;
                   <button class="btn btn-primary navbar-btn" name="homepage" onClick={this.handleClick}>Home</button>
+                  &nbsp;
+                  &nbsp;
+                  <input class="form-control " type="text" style={sStyle} value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search For Projects By Skill" autoFocus/>
 			  </div>
 			</nav>
 			<div>{projectEle}</div></div>
