@@ -87,7 +87,7 @@ class Dashboard extends React.Component{
 												<td>"OPEN"</td>
 											</tr>);
 			// If an error occurs here remove one projects
-			let publishedBody = user.projects.filter(searchingFor(this.state.search)).map( project => <tr>
+			let publishedBody = user.projects.map( project => <tr>
 												<td><a href={"/project/"+project.project_id}>{project.project}</a></td>
 												<td>{project.bid}</td>
 												<td><a href={"/users/"+project.freelancer}>{project.freelancer}</a></td>

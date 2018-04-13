@@ -52,23 +52,39 @@ class ProjectsHired extends React.Component {
     render() {
         const {authentication, user} = this.props;
         let hiredEle = null;
-        if (user.project && user.bids) {
+
             hiredEle = <div class="container">
                 <div class="col-sm-6">
-                    <h2>{user.project.title}</h2>
+                    <label><h3>Projects Hired By Me :</h3></label>
+                    <h2></h2>
                     <div class="well well-lg">
                         <h4><u>Project Description:</u></h4>
-                        <p>{user.project.description}</p>
+                        <p></p>
                         <h4><u>Skills Required:</u></h4>
-                        <p>{user.project.skills}</p>
+                        <p></p>
                         <h4><u>Budget Range:</u></h4>
-                        <p>{user.project.budget}</p>
+                        <p></p>
                         <h4><u>Average bid:</u></h4>
-                        <p>{user.bids.avg}</p>
+                        <p></p>
                     </div>
                 </div>
+                <br/>
+                <h3>Submission Panel</h3>
+                <div class="well well-lg col-sm-4">
+                    <form onSubmit={this.handleSubmit}>
+                        <div class="form-group">
+                            <label for="bid">File Upload :</label>
+                            <input type='file' OnChange={this.handleChange} name="file" id="file"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="period">Comments :</label>
+                            <textarea onChange={this.handleChange} class="form-control" name="comments" id="comments"/>
+                        </div>
+                        <button type="submit" class="center-block btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
-        }
+
         return (
             <div>
                 <nav class="navbar navbar-default">
