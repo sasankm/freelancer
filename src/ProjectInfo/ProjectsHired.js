@@ -73,14 +73,73 @@ class ProjectsHired extends React.Component {
                 <div class="well well-lg col-sm-4">
                     <form onSubmit={this.handleSubmit}>
                         <div class="form-group">
-                            <label for="bid">File Upload :</label>
+                            <label for="bid"><u>Download File Here :</u></label>
                             <input type='file' OnChange={this.handleChange} name="file" id="file"/>
                         </div>
                         <div class="form-group">
-                            <label for="period">Comments :</label>
-                            <textarea onChange={this.handleChange} class="form-control" name="comments" id="comments"/>
+                            <label for="period"><u>Make Payment :</u></label><br />
+                            <label>Select Method of Payment :</label>
+                            <select class="form-control" name="mop" onChange={this.handleChange}>
+                                <option value="">Pay through debit/credit card</option>
+                                <option value="">Pay through freelancer balance</option>
+                            </select>
+                            <label>Enter Amount :</label>
+                            <input onChange={this.handleChange} class="form-control" name="comments" id="comments"/>
+                            <label>Enter card number :</label>
+                            <input onChange={this.handleChange} class="form-control" name="comments" id="comments"/>
+                            <label>Enter expiry date :</label>
+                            <select class="form-control" name="expiry" onChange={this.handleChange}>
+                                <option value="1">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                                <option value="">6</option>
+                                <option value="">7</option>
+                                <option value="">8</option>
+                                <option value="">9</option>
+                                <option value="">10</option>
+                                <option value="1">11</option>
+                                <option value="">12</option>
+                                <option value="">13</option>
+                                <option value="">14</option>
+                                <option value="">15</option>
+                                <option value="">16</option>
+                                <option value="">17</option>
+                                <option value="">18</option>
+                                <option value="">19</option>
+                                <option value="">20</option>
+                                <option value="1">21</option>
+                                <option value="">22</option>
+                                <option value="">23</option>
+                                <option value="">24</option>
+                                <option value="">25</option>
+                                <option value="">26</option>
+                                <option value="">27</option>
+                                <option value="">28</option>
+                                <option value="">29</option>
+                                <option value="">30</option>
+                                <option value="">31</option>
+                            </select>
+                            <label>Enter expiry Month :</label>
+                            <select class="form-control" name="expiry" onChange={this.handleChange}>
+                                <option value="1">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                                <option value="">6</option>
+                                <option value="">7</option>
+                                <option value="">8</option>
+                                <option value="">9</option>
+                                <option value="">10</option>
+                                <option value="1">11</option>
+                                <option value="">12</option>
+                            </select>
+                            <label>Enter CVV :</label>
+                            <input onChange={this.handleChange} class="form-control" name="cvv" id="cvv"/>
                         </div>
-                        <button type="submit" class="center-block btn btn-primary">Submit</button>
+                        <button type="submit" class="center-block btn btn-primary">Make Payment</button>
                     </form>
                 </div>
             </div>
