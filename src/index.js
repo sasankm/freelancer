@@ -12,7 +12,7 @@ import ConnectedDashboardPage from './Dashboard/Dashboard';
 import ConnectedHome from './Home/home';
 import ConnectedProjectsHiredPage from './ProjectInfo/ProjectsHired';
 import ConnectedAccountPage from './Account/account';
-
+import ConnectedAccountFreelancerPage from './Account/account-freelancer';
 import { history } from './_helpers/history.js';
 import EnsureLoggedInContainer from './EnsureLoggedInContainer';
 import EnsureLoggedOutContainer from './EnsureLoggedOutContainer'
@@ -34,5 +34,6 @@ ReactDOM.render(<Provider store={store}><Router history={history}>
 		    <Route path="/projects-hired" component={ConnectedProjectsHiredPage}/>
 			<Route path="/dashboard" component={ConnectedDashboardPage}/>
         <Route path="/account" component={ConnectedAccountPage}/>
+        <Route path="/account-freelancer" component={ConnectedAccountFreelancerPage}/>
      </div>
      </Router></Provider>, document.getElementById('root'));

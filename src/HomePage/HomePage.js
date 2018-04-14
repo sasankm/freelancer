@@ -184,6 +184,7 @@ class HomePage extends React.Component{
 			          <li><a href={"/users/" + authentication.username}>View My Profile</a></li>
                         <li><a href="/update-profile">Projects Assigned To Me</a></li>
                         <li><a href="/projects-hired">Projects Hired By Me</a></li>
+						<li><a href="/account">View My Account</a></li>
 			        </ul>
 			      </li>
 			    </ul>
