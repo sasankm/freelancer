@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(cors({origin: 'http://localhost:3001', credentials: true}));
+app.use(cors({origin: 'http://18.144.4.224:3001', credentials: true}));
 
 var session = require('client-sessions');
 

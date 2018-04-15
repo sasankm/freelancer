@@ -20,7 +20,7 @@ export const userActions = {
 
 function signup(username,password, email){
 	return dispatch => {
-		axios('http://localhost:3000/users/signup', {
+		axios('http://18.144.4.224:3000/users/signup', {
 			method:"post",
 			data: {username, password, email},
 			withCredentials: true
@@ -40,7 +40,7 @@ function signup(username,password, email){
 
 function login(username, password) {
 	return dispatch => {
-        axios('http://localhost:3000/users/login', {
+        axios('http://18.144.4.224:3000/users/login', {
         	method: "post",
         	data: {username, password},
         	withCredentials: true
@@ -61,7 +61,7 @@ function login(username, password) {
 
 function logout(){
 	return dispatch => {
-		axios('http://localhost:3000/users/logout', {
+		axios('http://18.144.4.224:3000/users/logout', {
 			method: "get",
 			withCredentials: true
 		}).then(function(res){
@@ -77,7 +77,7 @@ function logout(){
 
 function getUserInfo(username){
 	return dispatch => {
-		axios('http://localhost:3000/users/user?username=' + username, {
+		axios('http://18.144.4.224:3000/users/user?username=' + username, {
         	method: "get",
         	withCredentials: true
         }).then(function(res){
@@ -91,7 +91,7 @@ function getUserInfo(username){
 
 function isUserLoggedIn(){
 	return dispatch => {
-		axios('http://localhost:3000/check', {
+		axios('http://18.144.4.224:3000/check', {
 			method: "get",
         	withCredentials: true
 		}).then(function(res){
@@ -109,7 +109,7 @@ function isUserLoggedIn(){
 function postProject(project){
 	console.log("posting project", project);
 	return dispatch => {
-		axios('http://localhost:3000/project/post-project', {
+		axios('http://18.144.4.224:3000/project/post-project', {
 			method: "post",
 			data: project,
         	withCredentials: true
@@ -127,7 +127,7 @@ function postProject(project){
 function getProjectsList(){
 	console.log("action to get list of projects");
 	return dispatch => {
-		axios('http://localhost:3000/project/projects', {
+		axios('http://18.144.4.224:3000/project/projects', {
 			method: "get",
 			withCredentials: true
 		}).then(function(res){
@@ -142,7 +142,7 @@ function getProjectsList(){
 function getProjectInfo(project_id){
 	console.log("request to get project info");
 	return dispatch => {
-		axios('http://localhost:3000/project/project?name='+project_id, {
+		axios('http://18.144.4.224:3000/project/project?name='+project_id, {
 			method: "get",
 			withCredentials: true
 		}).then(function(res){
@@ -157,7 +157,7 @@ function getProjectInfo(project_id){
 function updateProfile(profile){
 	console.log("profile update req: ", profile)
 	return dispatch => {
-		axios('http://localhost:3000/users/update-profile', {
+		axios('http://18.144.4.224:3000/users/update-profile', {
 			method: "post",
 			data: profile,
         	withCredentials: true
@@ -175,7 +175,7 @@ function updateProfile(profile){
 function bid(bid, period, project_id){
 	console.log("Request to post a bid for project ", project_id)
 	return dispatch => {
-		axios('http://localhost:3000/bids/bid', {
+		axios('http://18.144.4.224:3000/bids/bid', {
 			method: "post",
 			data: {bid, period, project_id},
         	withCredentials: true
@@ -192,7 +192,7 @@ function bid(bid, period, project_id){
 function getBids(project_id){
 	console.log("request to get bids for project_id", project_id);
 	return dispatch => {
-		axios('http://localhost:3000/bids/bid?project_id='+project_id, {
+		axios('http://18.144.4.224:3000/bids/bid?project_id='+project_id, {
 			method: "get",
 			withCredentials: true
 		}).then(function(res){
@@ -208,7 +208,7 @@ function getBids(project_id){
 function getBidsUser(){
 	console.log("Request to getBidsUser ");
 	return dispatch => {
-		axios('http://localhost:3000/bids/userbids', {
+		axios('http://18.144.4.224:3000/bids/userbids', {
 			method: "get",
 			withCredentials: true
 		}).then(function(res){
@@ -223,7 +223,7 @@ function getBidsUser(){
 function getProjectsPublished(){
 	console.log("Request to getProjectsPublished");
 	return dispatch => {
-		axios('http://localhost:3000/project/projectspublished', {
+		axios('http://18.144.4.224:3000/project/projectspublished', {
 			method: "get",
 			withCredentials: true
 		}).then(function(res){
@@ -237,7 +237,7 @@ function getProjectsPublished(){
 function getProjectsHired(project_id){
 	console.log("Request to getProjectsHired");
 	return dispatch => {
-		axios('http://localhost:3000/project/projectshired',{
+		axios('http://18.144.4.224:3000/project/projectshired',{
 			method:'get',
 			withCredentials: true
 		}).then(function(res){
