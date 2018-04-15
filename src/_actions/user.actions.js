@@ -33,7 +33,7 @@ function signup(username,password, email){
 			}
 		})
 			.catch(function(err){
-				dispatch({typr: "SIGNUP_FAILURE"})
+				dispatch({type: "SIGNUP_FAILURE"})
 			})
 	};
 }
