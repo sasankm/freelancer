@@ -11,6 +11,7 @@ import ConnectedProjectInfoPage from './ProjectInfo/ProjectInfo';
 import ConnectedDashboardPage from './Dashboard/Dashboard';
 import ConnectedHome from './Home/home';
 import ConnectedProjectsHiredPage from './ProjectInfo/ProjectsHired';
+import ConnectedProjectsAssignedPage from './ProjectInfo/ProjectsAssigned';
 import ConnectedAccountPage from './Account/account';
 import ConnectedAccountFreelancerPage from './Account/account-freelancer';
 import { history } from './_helpers/history.js';
@@ -35,5 +36,6 @@ ReactDOM.render(<Provider store={store}><Router history={history}>
 			<Route path="/dashboard" component={ConnectedDashboardPage}/>
         <Route path="/account" component={ConnectedAccountPage}/>
         <Route path="/account-freelancer" component={ConnectedAccountFreelancerPage}/>
+        <Route path="/projects-assigned" component={ConnectedProjectsAssignedPage}/>
      </div>
      </Router></Provider>, document.getElementById('root'));
